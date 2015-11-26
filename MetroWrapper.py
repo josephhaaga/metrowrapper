@@ -98,11 +98,24 @@ stations = {
 	'Woodley Park-Zoo/Adams Morgan':7,
 }
 
+def handleResponse(response):
+	response = response[response.index('<tbody>'):]
+	numRuns = response.count('<tr>')
+	for i in range(numRuns):
+		print(response[0:80])
+		print(' ')
+		response = response[response.index('<tr>'):]
+		
+
+
 def getNextTrains(station):
 	get_response = requests.get(url='http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id='+str(stations[station]))
-	print(get_response.text)
+	##	print(get_response.text)
+	handleResponse(get_response.text)
 
-getNextTrains('Woodley Park-Zoo/Adams Morgan')
+
+
+getNextTrains('Metro Center')
 
 
 
