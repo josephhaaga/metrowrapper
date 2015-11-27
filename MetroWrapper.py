@@ -101,11 +101,17 @@ stations = {
 def handleResponse(response):
 	response = response[response.index('<tbody>'):]
 	numRuns = response.count('<tr>')
+	tableRow = []
+	colors = []
 	for i in range(numRuns):
-		print(response[0:80])
-		print(' ')
+		## int(response[0:response.index('</tr>')])
+		tableRow.append(response[0:response.index('</tr>')])
 		response = response[response.index('<tr>'):]
-		
+	i=0
+	while tableRow.count > 0:
+		temp = tableRow.pop(0)
+				
+
 
 
 def getNextTrains(station):
