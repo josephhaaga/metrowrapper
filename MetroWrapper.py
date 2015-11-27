@@ -102,17 +102,28 @@ def handleResponse(response):
 	response = response[response.index('<tbody>'):]
 	numRuns = response.count('<tr>')
 	tableRow = []
-	colors = []
+	color = []
+	Destination = []
+	Minutes = []
 	for i in range(numRuns):
 		## int(response[0:response.index('</tr>')])
-		tableRow.append(response[0:response.index('</tr>')])
-		response = response[response.index('<tr>'):]
+		tableRow.append(response[response.index('<tr>'):])
+		response = response[response.index('</tr>')+5:]
 	i=0
-	while tableRow.count > 0:
+	while i<numRuns-1:
 		temp = tableRow.pop(0)
-				
-
-
+	##	print "++++++++++++++TEMP++++++++++"
+		##print temp
+		##print(temp[temp.index('alt="')+5:temp.index('" />')])		
+		color.append(temp[temp.index('alt="')+5:temp.index('" />')])
+		temp = temp[temp.index('</td>')+5:]	
+		temp = temp[temp.index('</td>')+5:]		
+		Destination.append(temp[temp.index('<td>')+4:temp.index('</td>')])
+	##	print "%s is destination" % temp[temp.index('<td>')+4:temp.index('</td>')]
+		temp = temp[temp.index('/td>')+4:]	
+		Minutes.append(temp[temp.index('<td>')+4:temp.index('</td>')])
+		i=i+1
+		print "%s line train towards %s in %d minutes." % (color.pop(), Destination.pop(), int(Minutes.pop()))		
 
 def getNextTrains(station):
 	get_response = requests.get(url='http://www.wmata.com/rider_tools/pids/showpid.cfm?station_id='+str(stations[station]))
@@ -121,7 +132,7 @@ def getNextTrains(station):
 
 
 
-getNextTrains('Metro Center')
+getNextTrains('Dupont Circle')
 
 
 
