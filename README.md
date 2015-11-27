@@ -9,7 +9,7 @@ Done
 - gather dictionary of station/id pairs
 
 To Do
-- parse http response
+- More robust parsing of HTTP response (handle mrblinky when a train is BOARDING)
 - finish CLI
 	- write aliases (run CLI on Foggy Bottom station w/ 'metro fb')
 
