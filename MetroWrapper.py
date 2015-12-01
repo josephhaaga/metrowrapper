@@ -2,7 +2,7 @@
 ## Simple HTTP Wrapper for WMATA Real-time Arrivals
 
 import requests
-
+import sys
 stations = {
 	'Addison Road-Seat Pleasant':92,
 	'Anacostia':85,
@@ -35,6 +35,7 @@ stations = {
 	'Federal Center SW':58,
 	'Federal Triangle':53,
 	'Foggy Bottom-GWU':40,
+	'fb':40,
 	'Forest Glen':32,
 	'Fort Totten':28,
 	'Franconia-Springfield':95,
@@ -132,7 +133,7 @@ def getNextTrains(station):
 
 
 
-getNextTrains('Dupont Circle')
+getNextTrains(sys.argv[1])
 
 
 
